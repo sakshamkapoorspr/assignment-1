@@ -49,15 +49,17 @@ initialTagSetup(listItems, DataList);
 
 // make list items clickable
 const previewImage = document.querySelector(".preview img");
-const previewTitle = document.querySelector(".preview input");
+const previewTitle = document.querySelector(".preview textarea");
 
 const selectListItem = (newActiveIndex) => {
   listItems[currentActiveElementIndex].classList.remove("active");
   listItems[newActiveIndex].classList.add("active");
   previewImage.setAttribute("src", DataList[newActiveIndex].previewImage);
-  previewTitle.setAttribute("value", DataList[newActiveIndex].title);
+  previewTitle.value = DataList[newActiveIndex].title;
   currentActiveElementIndex = newActiveIndex;
 };
+
+selectListItem(currentActiveElementIndex);
 
 listItems.forEach((item, index) => {
   item.addEventListener("click", () => {
@@ -77,4 +79,13 @@ document.addEventListener("keydown", (e) => {
     return;
   }
   selectListItem(newIndex);
+});
+
+// make list item titles editable
+previewTitle.addEventListener("input", (e) => {
+  DataList[currentActiveElementIndex].title = e.target.value;
+  setEllipsesTitle(
+    listItems[currentActiveElementIndex],
+    currentActiveElementIndex
+  );
 });

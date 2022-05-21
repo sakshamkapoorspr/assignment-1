@@ -58,13 +58,16 @@ li.image-list-item p {
 
 .preview img {
   width: 100%;
-  height: 85vh;
+  height: 83vh;
 }
 
-.preview input {
+.preview textarea {
   width: 100%;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   padding: 0.25rem;
   text-align: center;
   border: none;
+  height: max-content;
+  overflow-y: hidden;
+  font-family: inherit;
 }
