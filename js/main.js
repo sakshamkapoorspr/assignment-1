@@ -26,6 +26,7 @@ renderListItems(DataList);
 // select newly created list items
 const listItems = document.querySelectorAll(".image-list-item");
 let currentActiveElementIndex = 0;
+const totalListItems = DataList.length;
 listItems[currentActiveElementIndex].classList.add("active");
 
 const setEllipsesTitle = (listItem, index) => {
@@ -62,4 +63,18 @@ listItems.forEach((item, index) => {
   item.addEventListener("click", () => {
     selectListItem(index);
   });
+});
+
+// make list traversable through keyboard
+document.addEventListener("keydown", (e) => {
+  let newIndex = 0;
+  if (e.code === "ArrowDown") {
+    newIndex = (currentActiveElementIndex + 1) % totalListItems;
+  } else if (e.code === "ArrowUp") {
+    newIndex =
+      (currentActiveElementIndex - 1 + totalListItems) % totalListItems;
+  } else {
+    return;
+  }
+  selectListItem(newIndex);
 });
