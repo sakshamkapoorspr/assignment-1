@@ -1,69 +1,69 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
-    font-size: 16px; /* standard */
-    font-family: 'Nunito', sans-serif;
+  font-size: 16px; /* standard */
+  font-family: "Nunito", sans-serif;
 }
 
 main {
-    max-width: 760px;
-    margin: 40px auto;
-    display: flex;
+  max-width: 760px;
+  margin: 40px auto;
+  display: flex;
 }
 
 img {
-    border-radius: 0.3rem;
-    object-fit: cover;
-    object-position: center;
+  border-radius: 0.3rem;
+  object-fit: cover;
+  object-position: center;
 }
 
 .image-list-container {
-    flex-basis: 300px;
-    flex-grow: 0;
-    flex-shrink: 0;
+  flex-basis: 300px;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 
 ul.image-list {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 li.image-list-item {
-    display: flex;
-    align-items: center;
-    margin: 0 1rem 0.1rem 0;
-    padding: 0.5rem;
-    border-radius: 0.3rem;
-    transition: all 0.1s ease-in-out;
+  display: flex;
+  align-items: center;
+  margin: 0 1rem 0.1rem 0;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  transition: all 0.1s ease-in-out;
 }
 
 li.image-list-item.active {
-    background: #064ba6;
-    color: white;
+  background: #064ba6;
+  color: white;
 }
 
 li.image-list-item img {
-    width: 2.75rem;
-    height: 2.75rem;
+  width: 2.75rem;
+  height: 2.75rem;
 }
 
 li.image-list-item p {
-    margin-left: 0.6rem;
-    font-size: 1.05rem;
+  margin-left: 0.6rem;
+  font-size: 1.05rem;
 }
 
 .preview img {
-    width: 100%;
-    max-height: 85vh;
+  width: 100%;
+  max-height: 85vh;
 }
 
 .preview input {
-    width: 100%;
-    font-size: 1.25rem;
-    padding: 0.25rem;
-    text-align: center;
-    border: none;
+  width: 100%;
+  font-size: 1.25rem;
+  padding: 0.25rem;
+  text-align: center;
+  border: none;
 }
