@@ -13,7 +13,7 @@ const renderListItems = (DataList) => {
                     src=${item.previewImage}
                     alt=${item.title}
                 />
-                <p data-original=${item.title.replaceAll(" ", "-")}></p>
+                <p></p>
             </li>
         `;
     listHtml += listItemHtml;
@@ -25,25 +25,41 @@ renderListItems(DataList);
 
 // select newly created list items
 const listItems = document.querySelectorAll(".image-list-item");
-const currentActiveElementIndex = 0;
+let currentActiveElementIndex = 0;
 listItems[currentActiveElementIndex].classList.add("active");
 
-const setEllipsesTitle = (listItem) => {
+const setEllipsesTitle = (listItem, index) => {
   const titleContainer = listItem.lastElementChild;
-  let title = titleContainer.dataset.original.replaceAll("-", " ");
+  let title = DataList[index].title;
   if (title.length > 26) {
     title =
-      title.substr(0, 14) +
-      "..." +
-      title.substr(title.length - 9, title.length);
+      title.slice(0, 14) + "..." + title.slice(title.length - 9, title.length);
   }
   titleContainer.innerHTML = title;
 };
 
-const initialTagSetup = (listItems) => {
-  listItems.forEach((item) => {
-    setEllipsesTitle(item);
+const initialTagSetup = (listItems, DataList) => {
+  listItems.forEach((item, index) => {
+    setEllipsesTitle(item, index, DataList);
   });
 };
 
-initialTagSetup(listItems);
+initialTagSetup(listItems, DataList);
+
+// make list items clickable
+const previewImage = document.querySelector(".preview img");
+const previewTitle = document.querySelector(".preview input");
+
+const selectListItem = (newActiveIndex) => {
+  listItems[currentActiveElementIndex].classList.remove("active");
+  listItems[newActiveIndex].classList.add("active");
+  previewImage.setAttribute("src", DataList[newActiveIndex].previewImage);
+  previewTitle.setAttribute("value", DataList[newActiveIndex].title);
+  currentActiveElementIndex = newActiveIndex;
+};
+
+listItems.forEach((item, index) => {
+  item.addEventListener("click", () => {
+    selectListItem(index);
+  });
+});
