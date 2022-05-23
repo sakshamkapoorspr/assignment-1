@@ -13,7 +13,6 @@ main {
   max-width: 760px;
   margin: 40px auto;
   display: flex;
-  padding: 0 20px;
 }
 
 img {
@@ -80,6 +79,7 @@ li.image-list-item p {
     flex-direction: column-reverse;
     align-items: center;
     max-width: 370px;
+    padding: 0 15px;
   }
 
   .preview img {
