@@ -25,19 +25,6 @@ const app = async (URL) => {
     });
   });
 
-  // enable keyboard controls for list item navigation
-  document.addEventListener("keydown", (e) => {
-    let newIndex = 0;
-    if (e.code === "ArrowDown") {
-      newIndex = (currentActiveElementIndex + 1) % data.length;
-    } else if (e.code === "ArrowUp") {
-      newIndex = (currentActiveElementIndex - 1 + data.length) % data.length;
-    } else {
-      return;
-    }
-    selectListItem(newIndex, listItems, data);
-  });
-
   // enable renaming of list item titles
   const previewTitle = document.querySelector(".preview textarea");
   previewTitle.addEventListener("input", (e) => {
@@ -47,6 +34,29 @@ const app = async (URL) => {
       currentActiveElementIndex,
       data
     );
+  });
+
+  // enable keyboard controls for list item navigation, dark mode
+  document.addEventListener("keydown", (e) => {
+    let newIndex = 0;
+
+    // disable arrow keys when textarea is selected
+    if (e.target === previewTitle) return;
+
+    // toggle dark mode
+    if (e.code === "KeyD") {
+      document.getElementById("chk").click();
+      return;
+    }
+
+    if (e.code === "ArrowDown") {
+      newIndex = (currentActiveElementIndex + 1) % data.length;
+    } else if (e.code === "ArrowUp") {
+      newIndex = (currentActiveElementIndex - 1 + data.length) % data.length;
+    } else {
+      return;
+    }
+    selectListItem(newIndex, listItems, data);
   });
 };
 
