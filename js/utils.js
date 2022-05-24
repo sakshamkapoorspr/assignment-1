@@ -32,14 +32,42 @@ const renderListItems = (DataList) => {
   return listItems;
 };
 
+// get text width in pixels
+const getTextWidth = (text) => {
+  const tag = document.createElement("div");
+  tag.style.position = "absolute";
+  tag.style.whiteSpace = "nowrap";
+  tag.innerText = text;
+  document.body.appendChild(tag);
+  const result = tag.clientWidth;
+  document.body.removeChild(tag);
+  return result;
+};
+
 // implements ellipsis effect on given list item
 const setEllipsisTitle = (listItem, index, listData) => {
   const titleContainer = listItem.lastElementChild; // selects p tag inside list item
+  const titleContainerWidth = 200; // fix width container excluding padding
   let title = listData[index].title; // gets original title
 
-  if (title.length > 26) {
+  const titleWidth = getTextWidth(title); // gets hypothetical width of text
+
+  if (titleWidth > titleContainerWidth) {
+    let widthPerCharacter = Math.ceil(titleWidth / title.length);
+    widthPerCharacter += 0.1 * widthPerCharacter; // margin of safety
+
+    const totalCharactersAllowed = Math.floor(
+      titleContainerWidth / widthPerCharacter
+    );
+
     title =
-      title.slice(0, 14) + "..." + title.slice(title.length - 9, title.length);
+      title.slice(0, totalCharactersAllowed / 2) +
+      "..." +
+      title.slice(
+        title.length -
+          (totalCharactersAllowed - totalCharactersAllowed / 2 - 3),
+        title.length
+      );
   }
   titleContainer.innerHTML = title;
 };
