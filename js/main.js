@@ -50,5 +50,10 @@ const app = async (URL) => {
   });
 };
 
+// enable theme toggler
+document.getElementById("chk").addEventListener("change", () => {
+  document.body.classList.toggle("dark");
+});
+
 // runs app
 app(API_URL);
