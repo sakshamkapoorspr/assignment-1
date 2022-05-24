@@ -19,7 +19,7 @@ const renderListItems = (DataList) => {
                       src=${item.previewImage}
                       alt=${item.title}
                   />
-                  <p></p>
+                  <p class="tooltip tooltip-top"></p>
               </li>
           `;
     listHtml += listItemHtml;
@@ -70,6 +70,7 @@ const setEllipsisTitle = (listItem, index, listData) => {
       );
   }
   titleContainer.innerHTML = title;
+  titleContainer.setAttribute("data-tooltip", listData[index].title);
 };
 
 // set ellipsis effect for initial list items
